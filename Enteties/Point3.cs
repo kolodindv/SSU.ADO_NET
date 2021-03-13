@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ADO_task1
 {
     public class Point3
     { 
-        //в свойстваы
+        //координаты
         public double X { get; }
         public double Y { get; }
         public double Z { get; }
@@ -20,6 +21,7 @@ namespace ADO_task1
         {
             return $"({X}, {Y}, {Z})";
         }
+
         public override bool Equals(Object obj)
         {
             if (obj == null)
@@ -28,6 +30,16 @@ namespace ADO_task1
             }
             Point3 p = (Point3)obj;
             return (p.X == X && p.Y == Y && p.Z == Z) ;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode;
+            hashCode = 234 * X.GetHashCode();
+            hashCode += 56 * Y.GetHashCode();
+            hashCode += 12 * Z.GetHashCode();
+            return hashCode;
+
         }
 
         public static bool operator ==(Point3 p1, Point3 p2)
